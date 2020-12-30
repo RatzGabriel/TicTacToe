@@ -1,18 +1,9 @@
 
 const gameBoard = (()=>{
-    let board = ["","","","","","","","",""]
+    
+    let board = ["","","","","","","","",""];
 
-
-    const isBelowThreshold = (currentValue) => currentValue == "X"||currentValue=="O";
-    if(board.every(isBelowThreshold)){
-        
-        alert('tie')
-    }
     let counter = 2;
-
-
-
-
 
 
     const game = function (){
@@ -33,10 +24,53 @@ const gameBoard = (()=>{
         
     }
 
+    const reset = document.getElementById('reset');
+    reset.addEventListener('click',function(){
+        const grid = document.querySelector('.grid');
+    
+        board = ["","","","","","","","",""];
+        grid.innerHTML=""
+        
+        
+        p1.score=0;
+        p2.score=0;
+        display.displayFunction();
+        
+        for(let el in board){
+            
+            
+            const grid = document.querySelector('.grid')
+            const getDivField = document.createElement('div');
+            const getButton = document.createElement('button')
+            getButton.classList.add('btn-hide')
+            getDivField.classList.add('grid-item');
+            getDivField.innerText=board[el];
+            getDivField.appendChild(getButton);
+            grid.appendChild(getDivField);
+           
+        
+            getButton.addEventListener('click',function(){
+                if(board[el]=="X"||board[el]=="O"){
+                    console.log('test')
+                }else{
+                
+                board[el]="";
+                grid.innerHTML="";
+                
+                game()
+                }
+            })
+        }
 
+        
+    })  
 
 
     function winningCondition(){
+        
+        
+        
+        
         if(
             board[0]=="X" && board[1]=="X" && board[2]=="X"||
             board[0]=="X" && board[4]=="X" && board[8]=="X"||
@@ -45,13 +79,10 @@ const gameBoard = (()=>{
             board[3]=="X" && board[4]=="X" && board[5]=="X"||
             board[6]=="X" && board[7]=="X" && board[8]=="X"
             ){
-                alert('Player X Wins');
+                alert('Player X Wins Round');
                 board = ["","","","","","","","",""];
                 p1.score+=1;
-                console.log('X-Wins');
-                if(p1.score>4 ||p2.score>4){
-                    alert('Player Wins')
-                }
+                
                 
             }else if(
                 board[0] !== '' && board[1] !== '' && board[2] !== '' && 
@@ -71,19 +102,26 @@ const gameBoard = (()=>{
             board[3]=="O" && board[4]=="O" && board[5]=="O"||
             board[6]=="O" && board[7]=="O" && board[8]=="O"){
                 
-                alert('Player O Wins');
+                alert('Player O Wins Round');
                 board = ["","","","","","","","",""];
                 p2.score+=1;
-                if(p1.score>4 ||p2.score>4){
-                    alert('Player Wins GAME OVER')
-                }
                 
-                
+            }
+            if(p1.score>4){
+                alert('Player X Wins')
+                p1.score=0;
+                p2.score=0;
+            }
+            else if(p2.score>4){
+                alert('Player O Wins')
+                p1.score=0;
+                p2.score=0;
             }
     }
 
 
-    function fieldUpdate(mark){
+    const fieldUpdate = function (mark){
+    
         
         for(let el in board){
             
@@ -94,12 +132,13 @@ const gameBoard = (()=>{
             getButton.classList.add('btn-hide')
             getDivField.classList.add('grid-item');
             getDivField.innerText=board[el];
-            getDivField.appendChild(getButton)
+            getDivField.appendChild(getButton);
             grid.appendChild(getDivField);
+           
         
             getButton.addEventListener('click',function(){
                 if(board[el]=="X"||board[el]=="O"){
-                    
+                    console.log('test')
                 }else{
                 
                 board[el]=mark;
@@ -109,6 +148,8 @@ const gameBoard = (()=>{
                 }
             })
         }
+
+     
     }
 
     const playerFactory = (score,mark) => {
@@ -117,7 +158,7 @@ const gameBoard = (()=>{
     
     
 
-    return {game,playerFactory}
+    return {game,playerFactory,fieldUpdate}
 })();
 
 let p1 = gameBoard.playerFactory(0,"X")
@@ -140,18 +181,3 @@ gameBoard.game();
 
 
 
-if(p1.score>4 ||p2.score>4){
-    alert('Player Wins')
-}
-
-
-const reset = document.getElementById('reset');
-reset.addEventListener('click',function(){
-    const grid = document.querySelector('.grid')
-    p1.score=0;
-    p2.score=0;
-    display.displayFunction();
-    board = ["","","","","","","","",""];
-    grid.innerHTML="";
-    gameBoard.game();
-})
