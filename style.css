@@ -1,0 +1,25 @@
+body{
+    display: flex;
+    align-items: center;
+    background-color: rgb(39, 71, 18);
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    
+}
+.grid-item{
+    height: 5rem;
+    width: 5rem;
+    border: black 1px solid;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    
+}
+
+.btn-hide{
+    height: 100%;
+    width: 100%;
+}
