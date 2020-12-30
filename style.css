@@ -1,7 +1,12 @@
+:root{
+    color: white;
+    
+}
+
 body{
     display: flex;
     align-items: center;
-    background-color: rgb(39, 71, 18);
+    background-color: rgb(164, 172, 159);
     justify-content: center;
     flex-direction: column;
     height: 100vh;
@@ -11,16 +16,13 @@ body{
     height: 5rem;
     width: 5rem;
     border: black 1px solid;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 4rem;
 }
 
 .grid{
     display: grid;
     grid-template-columns: auto auto auto;
-    
+    text-align: center;
 }
 
 .btn-hide{
@@ -33,5 +35,6 @@ body{
     display: flex;
     width: 100%;
     justify-content: space-around;
+
     
 }

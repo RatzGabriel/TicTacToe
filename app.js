@@ -6,7 +6,7 @@ const gameBoard = (()=>{
     const isBelowThreshold = (currentValue) => currentValue == "X"||currentValue=="O";
     if(board.every(isBelowThreshold)){
         
-        return 'tie'
+        alert('tie')
     }
     let counter = 2;
 
@@ -54,6 +54,15 @@ const gameBoard = (()=>{
                 }
                 
             }else if(
+                board[0] !== '' && board[1] !== '' && board[2] !== '' && 
+                board[3] !== '' && board[4] !== '' && board[5] !== '' && 
+                board[6] !== '' && board[7] !== '' && board[8] !== '' ){
+                alert('Tie')
+                p1.score+=1;
+                p2.score+=1;
+                board = ["","","","","","","","",""];
+            }
+            else if(
             board[0]=="O" && board[1]=="O" && board[2]=="O"||
             board[0]=="O" && board[3]=="O" && board[6]=="O"||
             board[0]=="O" && board[4]=="O" && board[8]=="O"||
@@ -138,8 +147,11 @@ if(p1.score>4 ||p2.score>4){
 
 const reset = document.getElementById('reset');
 reset.addEventListener('click',function(){
-    
+    const grid = document.querySelector('.grid')
     p1.score=0;
     p2.score=0;
     display.displayFunction();
+    board = ["","","","","","","","",""];
+    grid.innerHTML="";
+    gameBoard.game();
 })
