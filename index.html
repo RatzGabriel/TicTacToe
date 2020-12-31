@@ -7,24 +7,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <form id="form" action= "" method="GET" >
+        <label for="p1">p1</label>
+        <input id="p1" name="p11" type="text">
+        <label for="p1">p1</label>
+        <input id="p2" name="p2" type="text">
+        <input id="sub" type="submit">
+    </form>
     <div class="container">
         <div class="header">
         <h1>GET 5 WINS to WIN THIS FANTASTIC GAME</h1>
     </div>
     <div class="display">
         <div class="left">
-            <h1>Player X</h1>
+            <h1 id="player1">Player X</h1>
             <h2 id="left">score:0</h2>
             
         </div>
         <div class="right">
-            <h1>Player O</h1>
+            <h1 id="player2">Player O</h1>
             <h2 id="right">score:0</h2>
         </div>
     </div>
+    
     </div>
     <div class="grid"></div>
-    <button id="reset">Reset</button>
+        <div class="btnRm">
+        <button id="reset">Reset</button>
+    
+    </div>
+    
 
     <script src="app.js"></script>
 </body>

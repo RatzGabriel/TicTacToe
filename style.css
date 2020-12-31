@@ -38,3 +38,11 @@ body{
 
     
 }
+
+.container{
+    opacity: 0%;
+}
+
+.btnRm{
+    opacity: 0%;
+}

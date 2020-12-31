@@ -1,4 +1,24 @@
+let sub = document.getElementById('sub');
+const player1 = document.getElementById('player1');
+const player2 = document.getElementById('player2')
 
+sub.addEventListener('click',function(){
+    let getP1 = document.getElementById('p1');
+    let getP2 = document.getElementById('p2');
+    const form = document.getElementById('form');
+    const cont = document.querySelector('.container');
+    form.innerHTML="";
+    gameBoard.game();
+    cont.classList.toggle('container');
+    const btnRm = document.querySelector('.btnRm');
+    btnRm.classList.toggle('btnRm');
+    player1.innerHTML=getP1.value;
+    player2.innerHTML=getP2.value;
+
+
+
+
+})
 const gameBoard = (()=>{
     
     let board = ["","","","","","","","",""];
@@ -27,40 +47,14 @@ const gameBoard = (()=>{
     const reset = document.getElementById('reset');
     reset.addEventListener('click',function(){
         const grid = document.querySelector('.grid');
-    
-        board = ["","","","","","","","",""];
         grid.innerHTML=""
-        
+        board = ["","","","","","","","",""];
         
         p1.score=0;
         p2.score=0;
         display.displayFunction();
+        game();
         
-        for(let el in board){
-            
-            
-            const grid = document.querySelector('.grid')
-            const getDivField = document.createElement('div');
-            const getButton = document.createElement('button')
-            getButton.classList.add('btn-hide')
-            getDivField.classList.add('grid-item');
-            getDivField.innerText=board[el];
-            getDivField.appendChild(getButton);
-            grid.appendChild(getDivField);
-           
-        
-            getButton.addEventListener('click',function(){
-                if(board[el]=="X"||board[el]=="O"){
-                    console.log('test')
-                }else{
-                
-                board[el]="";
-                grid.innerHTML="";
-                
-                game()
-                }
-            })
-        }
 
         
     })  
@@ -155,8 +149,6 @@ const gameBoard = (()=>{
     const playerFactory = (score,mark) => {
         return{score,mark:mark}
     }
-    
-    
 
     return {game,playerFactory,fieldUpdate}
 })();
@@ -177,7 +169,9 @@ const displayFunction = function (){
 
 
 
-gameBoard.game();
+
+
+
 
 
 
